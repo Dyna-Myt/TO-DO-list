@@ -1,0 +1,16 @@
+node_modules/
+dist/
+*.local
+
+# Local runtime data: databases, backups, and personal reference data stay private.
+data/**
+!data/.gitkeep
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db
+npm-debug.log*

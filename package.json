@@ -1,0 +1,29 @@
+{
+  "name": "taskflow-react",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A local-first React task workspace with a sidebar layout, dashboard, board, calendar, focus timer, categories, personal and team workspaces, history, and white-label branding.",
+  "scripts": {
+    "dev": "concurrently -k -n api,web -c green,cyan \"node server/index.mjs\" \"vite\"",
+    "build": "tsc --noEmit && vite build",
+    "start": "node server/index.mjs --production",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "lucide-react": "^1.72.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "concurrently": "^10.0.7",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
+  }
+}

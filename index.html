@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Taskflow is a calm, local-first task workspace with boards, calendars, focus sessions, and task history."
+    />
+    <meta name="theme-color" content="#0f100b" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Taskflow — Make room for what matters</title>
+    <script>
+      try {
+        var savedTheme = localStorage.getItem("taskflow.theme.v2");
+        if (savedTheme === "light" || savedTheme === "dark") {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (error) {
+        /* Theme is optional. */
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
