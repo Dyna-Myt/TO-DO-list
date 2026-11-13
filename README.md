@@ -89,6 +89,32 @@ npm start
 
 The API server also serves the built frontend at **http://127.0.0.1:3001**.
 
+In production the server binds to `0.0.0.0` so a hosting platform can reach it. Set `HOST` to override the bind address, and `PORT` if the platform assigns a port.
+
+## Deploy
+
+Taskflow needs a Node process and a persistent disk for the SQLite database, so static hosts such as GitHub Pages, Netlify, and Vercel are not a fit. The repo includes a `Dockerfile` and a `railway.json` for container-based hosts.
+
+### Railway (recommended)
+
+1. Create a project at [railway.com](https://railway.com) and choose **Deploy from GitHub repo**.
+2. Select `Dyna-Myt/TO-DO-list`. Railway detects the `Dockerfile` automatically.
+3. Add a **Volume** mounted at `/data`.
+4. Add these variables under **Variables**:
+   - `TASKFLOW_DB=/data/taskflow.db`
+   - `NODE_ENV=production`
+5. Deploy. Railway provides a public `https://…up.railway.app` URL.
+
+### Render
+
+1. Create a **Web Service** from the GitHub repo.
+2. Choose the **Docker** runtime (uses the included `Dockerfile`), or the Node runtime with build `npm install && npm run build` and start `npm start`.
+3. Add a persistent disk mounted at `/data`. Persistent disks require a paid instance type.
+4. Set `TASKFLOW_DB=/data/taskflow.db`.
+5. Deploy and use the generated `https://…onrender.com` URL.
+
+The hosted database starts empty. The local `data/` directory (including your current tasks, backups, and reference CSV) is git-ignored and is never uploaded.
+
 ## Scripts
 
 | Script | What it does |

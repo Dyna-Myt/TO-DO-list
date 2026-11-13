@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "description": "A local-first React task workspace with a sidebar layout, dashboard, board, calendar, focus timer, categories, personal and team workspaces, history, and white-label branding.",
   "scripts": {
     "dev": "concurrently -k -n api,web -c green,cyan \"node server/index.mjs\" \"vite\"",

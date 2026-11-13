@@ -11,6 +11,9 @@ const rootDir = path.resolve(__dirname, "..");
 const port = Number(process.env.PORT) || 3001;
 const isProduction =
   process.argv.includes("--production") || process.env.NODE_ENV === "production";
+// Hosted platforms must reach the server from outside the container. Local
+// development stays bound to loopback unless HOST is explicitly set.
+const host = process.env.HOST || (isProduction ? "0.0.0.0" : "127.0.0.1");
 const databaseFile =
   process.env.TASKFLOW_DB || path.join(rootDir, "data", "taskflow.db");
 
@@ -581,11 +584,11 @@ app.use((error, _request, response, _next) => {
   });
 });
 
-const server = app.listen(port, "127.0.0.1", () => {
+const server = app.listen(port, host, () => {
   if (isProduction) {
-    console.log(`Taskflow is running at http://localhost:${port}`);
+    console.log(`Taskflow is running at http://${host}:${port}`);
   } else {
-    console.log(`Taskflow API is running at http://localhost:${port}`);
+    console.log(`Taskflow API is running at http://${host}:${port}`);
     console.log(`Database: ${databaseFile}`);
   }
 });
